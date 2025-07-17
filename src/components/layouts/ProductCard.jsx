@@ -18,7 +18,7 @@ const ProductCard = () => {
                 <a className="block relative h-48 rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="object-cover rounded-2xl object-center w-full h-full block"
+                    className="object-contain rounded-2xl object-center w-full h-full block"
                     src={product.image}
                   />
                 </a>
