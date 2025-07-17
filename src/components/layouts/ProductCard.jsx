@@ -11,10 +11,10 @@ const ProductCard = () => {
   return (
     <>
       <section  className="text-gray-600 body-font">
-        <div className="container px-5 my-24 mx-">
-          <div className="flex flex-wrap gap-2">
+        <div className=" w-full px-5 my-24 max-w-screen-xl mx-auto ">  
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {productList.map((product) => (
-              <div key={product.id} className="lg:w-1/4 md:w-1/2 p-1 rounded-2xl border-2 w-full">
+              <div key={product.id} className="p-1 rounded-2xl border-2 w-full">
                 <a className="block relative h-48 rounded overflow-hidden">
                   <img
                     alt="ecommerce"
