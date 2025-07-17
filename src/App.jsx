@@ -1,13 +1,14 @@
-import ProductCard from "./components/layouts/ProductCard"
-
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/pages/Home";
 
 function App() {
-
   return (
     <>
-      <ProductCard/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
