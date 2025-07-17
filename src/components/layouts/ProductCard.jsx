@@ -14,7 +14,7 @@ const ProductCard = () => {
         <div className=" w-full px-5 my-24 max-w-screen-xl mx-auto ">  
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {productList.map((product) => (
-              <div key={product.id} className="p-1 rounded-2xl border-2 w-full">
+              <div key={product.id} className="p-1 cursor-pointer rounded-2xl w-full">
                 <a className="block relative h-48 rounded overflow-hidden">
                   <img
                     alt="ecommerce"
@@ -27,9 +27,9 @@ const ProductCard = () => {
                     {product.category}
                   </h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">
-                    {product.title}
+                    {product.title.slice(0, 20) + "..."}
                   </h2>
-                  <p className="mt-1">{product.price}</p>
+                  <p className="mt-1">${product.price}</p>
                 </div>
               </div>
             ))}
