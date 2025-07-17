@@ -24,17 +24,17 @@ const DetailsProduct = () => {
               className="lg:w-1/3 w-full lg:h-auto h-64 object-contain object-center rounded"
               src={detailProduct.image}
             />
-            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 lg:ml-[2rem] mt-[2rem] ">
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                 {detailProduct.title}
               </h1>
               <div className="flex mb-4"></div>
               <p className="leading-relaxed">{detailProduct.description}</p>
-              <div className="grid grid-cols-2">
+              <div className="grid mt-[2rem] grid-cols-2">
                 <span className="title-font font-medium text-2xl text-gray-900">
                   ${detailProduct.price}
                 </span>
-                <button className="grid ml-auto text-center text-white bg-indigo-500 border-0   focus:outline-none hover:bg-indigo-600 rounded">
+                <button className="grid ml-auto text-white cursor-pointer bg-indigo-500 border-0 py-1 px-6 focus:outline-none hover:bg-indigo-600 rounded">
                   Buy
                 </button>
               </div>
