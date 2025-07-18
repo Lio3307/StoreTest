@@ -19,7 +19,9 @@ const useProduct = create((set, get) => ({
   },
   getLocalStorage: () => {
     const localData = JSON.parse(localStorage.getItem('productStorage'));
-    if(localData) set({productList: localData})
+    if(localData) set({productList: localData});
+    return localData || [];
+
   },
 }));
 
