@@ -3,7 +3,7 @@ import axios from "axios";
 
 const API_KEY = import.meta.env.VITE_FAKESTORE_API;
 
-const useProduct = create((set) => ({
+const useProduct = create((set, get) => ({
   productList: [],
   fetchProduct: async () => {
     try {
@@ -14,11 +14,13 @@ const useProduct = create((set) => ({
     }
   },
   setLocalStorage: () => {
-    localStorage.setItem('productStorage', JSON.stringify(this.productList))
+    const dataProduct = get().productList;
+    localStorage.setItem('productStorage', JSON.stringify(dataProduct));
   },
   getLocalStorage: () => {
-    
-  }
+    const localData = JSON.parse(localStorage.getItem('productStorage'));
+    if(localData) set({productList: localData})
+  },
 }));
 
 export default useProduct;

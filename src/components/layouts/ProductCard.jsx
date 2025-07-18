@@ -3,19 +3,33 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ProductCard = () => {
-  const { productList, fetchProduct } = useProduct();
+  const { productList, fetchProduct, setLocalStorage } =
+    useProduct();
 
   useEffect(() => {
-    fetchProduct();
+    const handleLocalStorage = async () => {
+      try {
+        await fetchProduct();
+        setLocalStorage();
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    handleLocalStorage();
   }, []);
 
   return (
     <>
-      <section  className="text-gray-600 body-font">
-        <div className=" w-full px-5 my-24 max-w-screen-xl mx-auto ">  
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <section className="text-gray-600 body-font">
+        <div className=" w-full px-5 my-24 max-w-screen-xl mx-auto ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {productList.map((product) => (
-              <Link to={`/detail-product/${product.id}`} key={product.id}  className="p-1 cursor-pointer rounded-2xl w-full">
+              <Link
+                to={`/detail-product/${product.id}`}
+                key={product.id}
+                className="p-1 cursor-pointer rounded-2xl w-full"
+              >
                 <p className="block relative h-48 rounded overflow-hidden">
                   <img
                     alt="ecommerce"

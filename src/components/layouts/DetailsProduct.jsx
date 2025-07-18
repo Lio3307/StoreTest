@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const DetailsProduct = () => {
   const { id } = useParams();
-  const { productList, fetchProduct } = useProduct();
+  const { productList, fetchProduct, getLocalStorage } = useProduct();
 
   const [detailProduct, setDetailProduct] = useState({});
   const [loading, setLoading] = useState(true);
@@ -14,6 +14,7 @@ const DetailsProduct = () => {
       setDetailProduct(
         productList.find((product) => product.id === parseInt(id))
       );
+      getLocalStorage();
       fetchProduct();
     } catch (err) {
       console.error(err);
