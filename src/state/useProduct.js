@@ -13,6 +13,12 @@ const useProduct = create((set) => ({
       console.error(err);
     }
   },
+  setLocalStorage: () => {
+    localStorage.setItem('productStorage', JSON.stringify(this.productList))
+  },
+  getLocalStorage: () => {
+    
+  }
 }));
 
 export default useProduct;
