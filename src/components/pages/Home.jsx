@@ -1,12 +1,11 @@
-import ProductCard from "../layouts/ProductCard"
+import ProductCard from "../layouts/ProductCard";
 
 const Home = () => {
-    return(
-        <>
-
-            <ProductCard/>
-        </>
-    );
-}
+  return (
+    <>
+      <ProductCard />
+    </>
+  );
+};
 
 export default Home;
