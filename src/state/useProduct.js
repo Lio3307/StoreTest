@@ -15,13 +15,12 @@ const useProduct = create((set, get) => ({
   },
   setLocalStorage: () => {
     const dataProduct = get().productList;
-    localStorage.setItem('productStorage', JSON.stringify(dataProduct));
+    localStorage.setItem("productStorage", JSON.stringify(dataProduct));
   },
   getLocalStorage: () => {
-    const localData = JSON.parse(localStorage.getItem('productStorage'));
-    if(localData) set({productList: localData});
+    const localData = JSON.parse(localStorage.getItem("productStorage"));
+    if (localData) set({ productList: localData });
     return localData || [];
-
   },
 }));
 
