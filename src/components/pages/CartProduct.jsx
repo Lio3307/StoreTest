@@ -16,27 +16,28 @@ const CartProduct = () => {
       ) : (
         productInCart.map((products) => (
           <section className="text-gray-600 body-font overflow-hidden">
-          <div className="px-1 mt-20 border-2 rounded-[0.6rem] mx-[5rem]">
-            <div className="lg:w-4/5 mx-[4rem] flex flex-wrap">
-              <img
-                alt="ecommerce"
-                className="lg:w-1/8 w-full lg:h-50 h-64 object-contain object-center lg:mt-9 rounded"
-                src={products.image}
-              />
-              <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 lg:ml-[4rem] mt-[2rem] ">
-                <h1 className="text-gray-900 text-3xl title-font text-mb-1">
-                  {products.title}
-                </h1>
-                <div className="flex mb-4"></div>
-                <div className="grid my-[2rem] grid-cols-3">
-                  <span className="title-font font-medium text-2xl text-gray-900">
+            <div className="px-4 mt-20 border-2 rounded-[0.6rem] mx-auto max-w-screen-lg">
+              <div className="flex flex-nowrap items-center gap-4">
+                <div className="flex-shrink-0">
+                  <img
+                    alt={products.title}
+                    src={products.image}
+                    className="object-contain my-[1rem] rounded w-32 h-32 sm:w-40 sm:h-48"
+                  />
+                </div>
+
+                <div className="flex-grow">
+                  <h1 className="text-gray-900 text-xl sm:text-3xl font-medium mb-2">
+                    {products.title}
+                  </h1>
+
+                  <div className="text-lg sm:text-2xl font-semibold text-gray-900 mt-4">
                     ${products.price}
-                  </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
         ))
       )}
     </>
