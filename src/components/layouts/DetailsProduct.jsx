@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
 import useProduct from "../../state/useProduct";
 import { useState, useEffect } from "react";
+import useCart from "../../state/useCart";
 
 const DetailsProduct = () => {
   const { id } = useParams();
+  const { addToCart, setCartStorage } = useCart();
   const { productList, fetchProduct, getLocalStorage } = useProduct();
 
   const [detailProduct, setDetailProduct] = useState({});
@@ -68,7 +70,15 @@ const DetailsProduct = () => {
                   <button className="grid ml-1 text-white cursor-pointer bg-indigo-500 border-0 py-1 px-6 focus:outline-none hover:bg-indigo-600 rounded">
                     Buy
                   </button>
-                  <button className="grid ml-1 text-center text-white cursor-pointer bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-600 rounded">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      addToCart(detailProduct);
+                      setCartStorage();
+                    }}
+                    className="grid ml-1 text-center text-white cursor-pointer bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-600 rounded"
+                  >
                     + Cart
                   </button>
                 </div>
