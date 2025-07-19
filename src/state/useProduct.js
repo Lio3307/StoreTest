@@ -9,7 +9,11 @@ const useProduct = create((set, get) => ({
     try {
       
       const response = await axios.get(API_KEY);
-      set({ productList: response.data,});
+      const addStock = response.data.map(product => ({
+        ...product,
+        stock: 100,
+      }))
+      set({ productList: addStock,});
     } catch (err) {
       console.error(err);
     }

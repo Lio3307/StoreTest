@@ -37,7 +37,7 @@ const CartProduct = () => {
         </h3>
       ) : (
         productInCart.map((products) => (
-          <section className="text-gray-600 body-font overflow-hidden">
+          <section key={products.id} className="text-gray-600 body-font overflow-hidden">
             <div className=" my-[2rem] border-2 rounded-[0.6rem] mx-auto max-w-screen-sm md:max-w-screen-md">
               <Link
                 to={`/detail-product/${products.id}`}
@@ -55,6 +55,8 @@ const CartProduct = () => {
                   <h1 className="text-gray-900 text-[0.76rem] lg:text-[1.4rem] font-medium mb-2">
                     {products.title}
                   </h1>
+
+                  <p>{products.qty}</p>
 
                   <div className="text-[0.76rem] sm:text-2xl lg:text-[1.2rem] font-semibold text-gray-900 mt-4">
                     ${products.price}
