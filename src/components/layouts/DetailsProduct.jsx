@@ -78,7 +78,7 @@ const DetailsProduct = () => {
                     }}
                     className="grid ml-1 text-center text-white cursor-pointer bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-600 rounded"
                   >
-                    + Cart
+                    {detailProduct.stock === 0 ? 'Out Of Stock!' : '+ Cart'}
                   </button>
                 </div>
               </div>
