@@ -12,7 +12,7 @@ const CartProduct = () => {
     } catch (err) {
       console.error(err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }, []);
   return (
@@ -38,22 +38,25 @@ const CartProduct = () => {
       ) : (
         productInCart.map((products) => (
           <section className="text-gray-600 body-font overflow-hidden">
-            <div className="px-4 my-[2rem] border-2 rounded-[0.6rem] mx-auto max-w-screen-lg">
-              <Link to={`/detail-product/${products.id}`} className="flex flex-nowrap items-center gap-4">
+            <div className=" my-[2rem] border-2 rounded-[0.6rem] mx-auto max-w-screen-sm md:max-w-screen-md">
+              <Link
+                to={`/detail-product/${products.id}`}
+                className="flex flex-nowrap items-center gap-4"
+              >
                 <div className="flex-shrink-0">
                   <img
                     alt={products.title}
                     src={products.image}
-                    className="object-contain my-[1rem] rounded w-32 h-32 sm:w-40 sm:h-48"
+                    className="object-contain my-[0.6rem] rounded w-32 h-16 sm:w-40 sm:h-26"
                   />
                 </div>
 
                 <div className="flex-grow">
-                  <h1 className="text-gray-900 text-[1rem] md:text-[2.1rem] lg:text-3xl font-medium mb-2">
+                  <h1 className="text-gray-900 text-[0.76rem] lg:text-[1.4rem] font-medium mb-2">
                     {products.title}
                   </h1>
 
-                  <div className="text-[1rem] sm:text-2xl font-semibold text-gray-900 mt-4">
+                  <div className="text-[0.76rem] sm:text-2xl lg:text-[1.2rem] font-semibold text-gray-900 mt-4">
                     ${products.price}
                   </div>
                 </div>
