@@ -109,7 +109,7 @@ const useProduct = create((set, get) => ({
           };
         }
       });
-      get().setCartStorage();
+      localStorage.removeItem('cartStorage')
       return {
         productList: setUpdatedProductList,
         productInCart: [],
