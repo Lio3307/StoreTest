@@ -1,15 +1,36 @@
 import useCart from "../../state/useCart";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const CartProduct = () => {
   const { productInCart, getCartStorage } = useCart();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getCartStorage();
+    try {
+      getCartStorage();
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false)
+    }
   }, []);
   return (
     <>
-      {productInCart.length === 0 ? (
+      {loading ? (
+        <section className="text-gray-600 body-font overflow-hidden">
+          <div className="px-4 mt-20 border-2 rounded-[0.6rem] mx-auto max-w-screen-lg">
+            <div className="flex flex-nowrap items-center gap-4 animate-pulse">
+              <div className="flex-shrink-0">
+                <div className="bg-gray-300 rounded w-32 h-32 sm:w-40 sm:h-48"></div>
+              </div>
+              <div className="flex-grow">
+                <div className="bg-gray-300 h-6 w-3/4 mb-4 rounded"></div>
+                <div className="bg-gray-300 h-5 w-1/4 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : productInCart.length === 0 ? (
         <h3 className="text-center mt-[1.6rem]">
           You Dont Have Item On Your Cart...
         </h3>
