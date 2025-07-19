@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const CartProduct = () => {
-  const { productInCart, getCartStorage, totalCartPrice, increaseQty, decreaseQty } =
-    useCart();
+  const {
+    productInCart,
+    getCartStorage,
+    totalCartPrice,
+    increaseQty,
+    decreaseQty,
+  } = useCart();
   const [loading, setLoading] = useState(true);
   const totalPrice = totalCartPrice();
 
@@ -44,42 +49,51 @@ const CartProduct = () => {
               key={products.id}
               className="text-gray-600 body-font overflow-hidden"
             >
-              <div className=" my-[2rem] border-2 rounded-[0.6rem] mx-auto max-w-screen-sm md:max-w-screen-md">
+              <div className="my-8 border rounded-lg mx-auto max-w-screen-md p-4 shadow-md">
                 <Link
                   to={`/detail-product/${products.id}`}
-                  className="flex flex-nowrap items-center gap-4"
+                  className="flex items-center gap-4"
                 >
                   <div className="flex-shrink-0">
                     <img
                       alt={products.title}
                       src={products.image}
-                      className="object-contain my-[0.6rem] rounded w-32 h-16 sm:w-40 sm:h-26"
+                      className="object-contain rounded w-24 h-24 sm:w-32 sm:h-32"
                     />
                   </div>
 
                   <div className="flex-grow">
-                    <h1 className="text-gray-900 text-[0.76rem] lg:text-[1.4rem] font-medium mb-2">
+                    <h1 className="text-gray-900 text-base sm:text-xl lg:text-2xl font-semibold mb-2">
                       {products.title}
                     </h1>
 
-                    <p>{products.qty}</p>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        increaseQty(products);
-                      }}
-                    >
-                      +
-                    </button>
-                    <button
-                    onClick={(e)=> {
-                      e.stopPropagation()
-                      e.preventDefault()
-                      decreaseQty(products)
-                    }}>-</button>
+                    <div className="flex items-center gap-2 mb-2">
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          decreaseQty(products);
+                        }}
+                        className="bg-gray-200 text-gray-800 px-2 py-1 rounded hover:bg-gray-300 transition"
+                      >
+                        -
+                      </button>
 
-                    <div className="text-[0.76rem] sm:text-2xl lg:text-[1.2rem] font-semibold text-gray-900 mt-4">
+                      <p className="text-lg font-medium">{products.qty}</p>
+
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          increaseQty(products);
+                        }}
+                        className="bg-gray-200 text-gray-800 px-2 py-1 rounded hover:bg-gray-300 transition"
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <div className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">
                       ${products.price}
                     </div>
                   </div>
@@ -87,7 +101,10 @@ const CartProduct = () => {
               </div>
             </section>
           ))}
-          <p>{totalPrice}</p>
+          <div className="max-w-screen-md mx-auto p-4 border-t mt-6 flex justify-between text-xl font-bold">
+            <p>Total:</p>
+            <p>${totalPrice}</p>
+          </div>
         </>
       )}
     </>
