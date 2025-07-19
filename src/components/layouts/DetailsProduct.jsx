@@ -6,7 +6,7 @@ import useCart from "../../state/useCart";
 const DetailsProduct = () => {
   const { id } = useParams();
   const { addToCart, setCartStorage } = useCart();
-  const { productList, fetchProduct, getLocalStorage } = useProduct();
+  const { productList, getLocalStorage } = useProduct();
 
   const [detailProduct, setDetailProduct] = useState({});
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,6 @@ const DetailsProduct = () => {
   useEffect(() => {
     const handleFetchData = async () => {
       try {
-        await fetchProduct();
         const currentProduct = getLocalStorage() || productList;
         setDetailProduct(
           currentProduct.find((product) => product.id === parseInt(id))
