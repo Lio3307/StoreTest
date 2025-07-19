@@ -9,6 +9,7 @@ const CartProduct = () => {
     totalCartPrice,
     increaseQty,
     decreaseQty,
+    checkOut,
   } = useCart();
   const [loading, setLoading] = useState(true);
   const totalPrice = totalCartPrice();
@@ -104,6 +105,15 @@ const CartProduct = () => {
           <div className="max-w-screen-md mx-auto p-4 border-t mt-6 flex justify-between text-xl font-bold">
             <p>Total:</p>
             <p>${totalPrice}</p>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                checkOut(...productInCart)
+              }}
+            >
+              CheckOut
+            </button>
           </div>
         </>
       )}

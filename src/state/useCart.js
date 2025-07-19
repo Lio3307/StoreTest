@@ -67,5 +67,16 @@ const useCart = create((set, get) => ({
     });
     get().setCartStorage();
   },
+  checkOut: (product) => {
+    set((state) => {
+      const setStock = state.productInCart.map((item) =>
+        item.id === product.id
+          ? { ...item, stock: item.stock - item.qty }
+          : item
+      );
+      localStorage.removeItem('cartStorage');
+      return { productInCart: setStock };
+    });
+  },
 }));
 export default useCart;
