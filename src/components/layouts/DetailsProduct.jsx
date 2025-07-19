@@ -18,7 +18,6 @@ const DetailsProduct = () => {
         setDetailProduct(
           currentProduct.find((product) => product.id === parseInt(id))
         );
-        getLocalStorage();
       } catch (err) {
         console.error(err);
       } finally {
