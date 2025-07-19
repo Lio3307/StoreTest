@@ -18,8 +18,11 @@ const useCart = create((set, get) => ({
           (item) => item.id === product.id
         );
         if (existItems) {
-          const addQty = state.productInCart.map((itemCart) => 
-          itemCart.id === product.id ? {...itemCart, qty: itemCart.qty +1,} : itemCart);
+          const addQty = state.productInCart.map((itemCart) =>
+            itemCart.id === product.id
+              ? { ...itemCart, qty: itemCart.qty + 1 }
+              : itemCart
+          );
 
           return { productInCart: addQty };
         } else {
@@ -34,6 +37,10 @@ const useCart = create((set, get) => ({
       alert("Product Has Been Added To Cart!!");
     }
   },
-  totalCartPrice: () => {},
+  totalCartPrice: () => {
+    const cartData = get().productInCart;
+    const totalPrice = cartData.reduce((acc, val) => acc + (val.price * val.qty), 0);
+    return totalPrice.toFixed(2);
+  },
 }));
 export default useCart;
