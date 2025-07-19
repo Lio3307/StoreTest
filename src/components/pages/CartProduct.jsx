@@ -48,11 +48,11 @@ const CartProduct = () => {
                 </div>
 
                 <div className="flex-grow">
-                  <h1 className="text-gray-900 text-xl sm:text-3xl font-medium mb-2">
+                  <h1 className="text-gray-900 text-[1rem] md:text-[2.1rem] lg:text-3xl font-medium mb-2">
                     {products.title}
                   </h1>
 
-                  <div className="text-lg sm:text-2xl font-semibold text-gray-900 mt-4">
+                  <div className="text-[1rem] sm:text-2xl font-semibold text-gray-900 mt-4">
                     ${products.price}
                   </div>
                 </div>
