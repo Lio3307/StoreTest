@@ -102,17 +102,21 @@ const CartProduct = () => {
               </div>
             </section>
           ))}
-          <div className="max-w-screen-md mx-auto p-4 border-t mt-6 flex justify-between text-xl font-bold">
-            <p>Total:</p>
-            <p>${totalPrice}</p>
+          <div className="max-w-screen-md mx-auto p-4 border-t mt-6">
+            <div className="flex justify-between items-center text-xl font-bold mb-4">
+              <p>Total:</p>
+              <p>${totalPrice}</p>
+            </div>
+
             <button
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 checkOut(...productInCart);
               }}
+              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition active:scale-95"
             >
-              CheckOut
+              Checkout
             </button>
           </div>
         </>

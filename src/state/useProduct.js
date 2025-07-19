@@ -100,21 +100,31 @@ const useProduct = create((set, get) => ({
     get().setCartStorage();
   },
   checkOut: (product) => {
-    set((state) => {
-      const setUpdatedProductList = state.productList.map((productItems) => {
-        if (product.id === productItems.id) {
-          return {
-            ...productItems,
-            stock: productItems.stock - product.qty,
-          };
-        }
+    try {
+      const confirmCheckOut = confirm('Are You Sure Want To Check Out?')
+      if(!confirmCheckOut) return;
+      set((state) => {
+        const setUpdatedProductList = state.productList.map((productItems) => {
+          if (product.id === productItems.id) {
+            return {
+              ...productItems,
+              stock: productItems.stock - product.qty,
+            };
+          }
+          return productItems;
+        });
+        localStorage.removeItem('cartStorage');
+        localStorage.setItem('productStorage', JSON.stringify(setUpdatedProductList));
+        return {
+          productList: setUpdatedProductList,
+          productInCart: [],
+        };
       });
-      localStorage.removeItem('cartStorage')
-      return {
-        productList: setUpdatedProductList,
-        productInCart: [],
-      };
-    });
+    } catch (err) {
+      console.error(err)
+    } finally {
+      alert("Check Out Success!!")
+    }
   },
 }));
 
