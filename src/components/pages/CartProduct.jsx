@@ -1,4 +1,5 @@
 import useCart from "../../state/useCart";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const CartProduct = () => {
@@ -37,8 +38,8 @@ const CartProduct = () => {
       ) : (
         productInCart.map((products) => (
           <section className="text-gray-600 body-font overflow-hidden">
-            <div className="px-4 mt-20 border-2 rounded-[0.6rem] mx-auto max-w-screen-lg">
-              <div className="flex flex-nowrap items-center gap-4">
+            <div className="px-4 my-[2rem] border-2 rounded-[0.6rem] mx-auto max-w-screen-lg">
+              <Link to={`/detail-product/${products.id}`} className="flex flex-nowrap items-center gap-4">
                 <div className="flex-shrink-0">
                   <img
                     alt={products.title}
@@ -56,7 +57,7 @@ const CartProduct = () => {
                     ${products.price}
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </section>
         ))
