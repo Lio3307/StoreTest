@@ -75,7 +75,11 @@ const DetailsProduct = () => {
                       addToCart(detailProduct);
                       setCartStorage();
                     }}
-                    className="grid ml-1 text-center text-white cursor-pointer bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-600 rounded"
+                    className={`grid ml-1 text-center text-white ${
+                      detailProduct.stock === 0
+                        ? "bg-green-950 cursor-not-allowed"
+                        : "cursor-pointer bg-green-500 focus:outline-none hover:bg-green-600"
+                    } border-0 py-1 px-6 rounded`}
                   >
                     {detailProduct.stock === 0 ? "Out Of Stock!" : "+ Cart"}
                   </button>
