@@ -1,4 +1,4 @@
-import useCart from "../../state/useCart";
+import useProduct from "../../state/useProduct";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ const CartProduct = () => {
     increaseQty,
     decreaseQty,
     checkOut,
-  } = useCart();
+  } = useProduct();
   const [loading, setLoading] = useState(true);
   const totalPrice = totalCartPrice();
 
@@ -109,7 +109,7 @@ const CartProduct = () => {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                checkOut(...productInCart)
+                checkOut(...productInCart);
               }}
             >
               CheckOut
