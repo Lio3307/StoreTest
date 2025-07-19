@@ -69,6 +69,7 @@ const DetailsProduct = () => {
                     Buy
                   </button>
                   <button
+                  disabled={detailProduct.stock === 0}
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();

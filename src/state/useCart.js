@@ -71,10 +71,10 @@ const useCart = create((set, get) => ({
     set((state) => {
       const setStock = state.productInCart.map((item) =>
         item.id === product.id
-          ? { ...item, stock: item.stock - item.qty }
+          ? { ...item, stock: item.stock > 0 ? item.stock - item.qty : item.stock}
           : item
       );
-      localStorage.removeItem('cartStorage');
+      get().setCartStorage()
       return { productInCart: setStock };
     });
   },
