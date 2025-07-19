@@ -48,9 +48,21 @@ const useCart = create((set, get) => ({
   increaseQty: (product) => {
     set((state) => {
       const increase = state.productInCart.map((item) =>
-        item.id === product.id ? { ...item, qty: item.qty + 1 } : item
+        item.id === product.id
+          ? { ...item, qty: item.qty < item.stock ? item.qty + 1 : item.qty }
+          : item
       );
-      return {productInCart: increase}
+      return { productInCart: increase };
+    });
+  },
+  decreaseQty: (product) => {
+    set((state) => {
+      const decrease = state.productInCart.map((item) =>
+        item.id === product.id
+          ? { ...item, qty: item.qty > 1 ? item.qty - 1 : item.qty }
+          : item
+      );
+      return { productInCart: decrease };
     });
   },
 }));

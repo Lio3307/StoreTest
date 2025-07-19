@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const CartProduct = () => {
-  const { productInCart, getCartStorage, totalCartPrice, increaseQty } =
+  const { productInCart, getCartStorage, totalCartPrice, increaseQty, decreaseQty } =
     useCart();
   const [loading, setLoading] = useState(true);
   const totalPrice = totalCartPrice();
@@ -72,6 +72,12 @@ const CartProduct = () => {
                     >
                       +
                     </button>
+                    <button
+                    onClick={(e)=> {
+                      e.stopPropagation()
+                      e.preventDefault()
+                      decreaseQty(products)
+                    }}>-</button>
 
                     <div className="text-[0.76rem] sm:text-2xl lg:text-[1.2rem] font-semibold text-gray-900 mt-4">
                       ${products.price}
