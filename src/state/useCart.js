@@ -54,6 +54,7 @@ const useCart = create((set, get) => ({
       );
       return { productInCart: increase };
     });
+    get().setCartStorage();
   },
   decreaseQty: (product) => {
     set((state) => {
@@ -64,6 +65,7 @@ const useCart = create((set, get) => ({
       );
       return { productInCart: decrease };
     });
+    get().setCartStorage();
   },
 }));
 export default useCart;
