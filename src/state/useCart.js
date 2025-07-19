@@ -39,8 +39,19 @@ const useCart = create((set, get) => ({
   },
   totalCartPrice: () => {
     const cartData = get().productInCart;
-    const totalPrice = cartData.reduce((acc, val) => acc + (val.price * val.qty), 0);
+    const totalPrice = cartData.reduce(
+      (acc, val) => acc + val.price * val.qty,
+      0
+    );
     return totalPrice.toFixed(2);
+  },
+  increaseQty: (product) => {
+    set((state) => {
+      const increase = state.productInCart.map((item) =>
+        item.id === product.id ? { ...item, qty: item.qty + 1 } : item
+      );
+      return {productInCart: increase}
+    });
   },
 }));
 export default useCart;
