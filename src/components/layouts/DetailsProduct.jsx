@@ -46,7 +46,7 @@ const DetailsProduct = () => {
           </div>
         </div>
       ) : (
-        <section className="text-gray-600 body-font overflow-hidden">
+        <section className="text-gray-600  body-font overflow-hidden">
           <div className="px-5 mt-20 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
               <img
@@ -60,7 +60,7 @@ const DetailsProduct = () => {
                 </h1>
                 <div className="flex mb-4"></div>
                 <p className="leading-relaxed">{detailProduct.description}</p>
-                <div className="grid my-[2rem] grid-cols-3">
+                <div className="grid my-[2rem] grid-cols-2">
                   <span className="title-font font-medium text-2xl text-gray-900">
                     ${detailProduct.price}
                   </span>
@@ -72,7 +72,7 @@ const DetailsProduct = () => {
                       addToCart(detailProduct);
                       setCartStorage();
                     }}
-                    className={`grid ml-1 text-center text-white ${
+                    className={`grid ml-[4rem] lg:ml-[5rem] text-center text-white ${
                       detailProduct.stock === 0
                         ? "bg-green-950 cursor-not-allowed"
                         : "cursor-pointer bg-green-500 focus:outline-none hover:bg-green-600"
