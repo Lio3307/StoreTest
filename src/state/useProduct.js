@@ -9,11 +9,6 @@ const useProduct = create((set, get) => ({
   //producList function
   fetchProduct: async () => {
     try {
-      const localStorage = get().getLocalStorage();
-      if (localStorage) {
-        set({ productList: localStorage });
-        return;
-      }
       const response = await axios.get(API_KEY);
       const addStock = response.data.map((product) => ({
         ...product,
