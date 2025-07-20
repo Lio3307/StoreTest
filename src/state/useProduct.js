@@ -10,11 +10,8 @@ const useProduct = create((set, get) => ({
   fetchProduct: async () => {
     try {
       const response = await axios.get(API_KEY);
-      const addStock = response.data.map((product) => ({
-        ...product,
-        stock: 100,
-      }));
-      set({ productList: addStock });
+      set({ productList: response.data });
+      console.log(get().productList);
       get().setLocalStorage();
     } catch (err) {
       console.error(err);
@@ -37,6 +34,7 @@ const useProduct = create((set, get) => ({
   getCartStorage: () => {
     const getCartData = JSON.parse(localStorage.getItem("cartStorage"));
     if (getCartData) set({ productInCart: getCartData });
+    return getCartData;
   },
   addToCart: async (product) => {
     try {
@@ -76,7 +74,10 @@ const useProduct = create((set, get) => ({
     set((state) => {
       const increase = state.productInCart.map((item) =>
         item.id === product.id
-          ? { ...item, qty: item.qty < item.stock ? item.qty + 1 : item.qty }
+          ? {
+              ...item,
+              qty: Number(item.qty < item.stock ? item.qty + 1 : item.qty),
+            }
           : item
       );
       return { productInCart: increase };
@@ -87,17 +88,18 @@ const useProduct = create((set, get) => ({
     set((state) => {
       const decrease = state.productInCart.map((item) =>
         item.id === product.id
-          ? { ...item, qty: item.qty > 1 ? item.qty - 1 : item.qty }
+          ? { ...item, qty: Number(item.qty > 1 ? item.qty - 1 : item.qty) }
           : item
       );
       return { productInCart: decrease };
     });
     get().setCartStorage();
   },
-  checkOut: (product) => {
+  checkOut: async (product) => {
     try {
-      const confirmCheckOut = confirm('Are You Sure Want To Check Out?')
-      if(!confirmCheckOut) return;
+      const confirmCheckOut = confirm("Are You Sure Want To Check Out?");
+      if (!confirmCheckOut) return;
+      await axios.patch(`${API_KEY}/${product.id}`, { stock: product.stock - product.qty})
       set((state) => {
         const setUpdatedProductList = state.productList.map((productItems) => {
           if (product.id === productItems.id) {
@@ -108,17 +110,21 @@ const useProduct = create((set, get) => ({
           }
           return productItems;
         });
-        localStorage.removeItem('cartStorage');
-        localStorage.setItem('productStorage', JSON.stringify(setUpdatedProductList));
+
+
+        localStorage.removeItem("cartStorage");
+        localStorage.setItem(
+          "productStorage",
+          JSON.stringify(setUpdatedProductList)
+        );
         return {
           productList: setUpdatedProductList,
           productInCart: [],
         };
       });
+      alert("Check Out Success!!");
     } catch (err) {
-      console.error(err)
-    } finally {
-      alert("Check Out Success!!")
+      console.error(err);
     }
   },
 }));
