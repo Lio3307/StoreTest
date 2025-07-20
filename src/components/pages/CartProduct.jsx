@@ -10,6 +10,7 @@ const CartProduct = () => {
     increaseQty,
     decreaseQty,
     checkOut,
+    clearCart,
   } = useProduct();
   const [loading, setLoading] = useState(true);
   const totalPrice = totalCartPrice();
@@ -45,6 +46,19 @@ const CartProduct = () => {
         </h3>
       ) : (
         <>
+          <div className="max-w-screen-md mx-auto p-4 flex justify-between items-center">
+            <button
+              onClick={clearCart}
+              className="flex items-center gap-2 bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition active:scale-95 shadow-sm"
+            >
+              Clear Cart
+            </button>
+
+            <p className="text-gray-500 text-sm">
+              {productInCart.length} item{productInCart.length > 1 ? "s" : ""}{" "}
+              in cart
+            </p>
+          </div>
           {productInCart.map((products) => (
             <section
               key={products.id}

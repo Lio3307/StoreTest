@@ -127,6 +127,14 @@ const useProduct = create((set, get) => ({
       console.error(err);
     }
   },
+  clearCart: (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const confirmRemove = confirm('Are You Sure Want To CLear All Cart?')
+    if(!confirmRemove) return;
+    localStorage.removeItem('cartStorage')
+    set({productInCart: []})
+  }
 }));
 
 export default useProduct;
