@@ -14,9 +14,10 @@ const DetailsProduct = () => {
     const handleFetchData = async () => {
       try {
         const currentProduct = getLocalStorage() || productList;
-        setDetailProduct(
-          currentProduct.find((product) => product.id === parseInt(id))
+        const productMatchId = currentProduct.find(
+          (product) => parseInt(product.id) === parseInt(id)
         );
+        setDetailProduct(productMatchId);
       } catch (err) {
         console.error(err);
       } finally {
