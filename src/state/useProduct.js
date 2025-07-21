@@ -11,7 +11,6 @@ const useProduct = create((set, get) => ({
     try {
       const response = await axios.get(API_KEY);
       set({ productList: response.data });
-      console.log(get().productList);
       get().setLocalStorage();
     } catch (err) {
       console.error(err);
