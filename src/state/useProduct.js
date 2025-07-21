@@ -98,10 +98,17 @@ const useProduct = create((set, get) => ({
     try {
       const confirmCheckOut = confirm("Are You Sure Want To Check Out?");
       if (!confirmCheckOut) return;
-      await axios.patch(`${API_KEY}/${product.id}`, { stock: product.stock - product.qty})
+      for (const productCart of product) {
+        await axios.patch(`${API_KEY}/${Number(productCart.id)}`, {
+          stock: productCart.stock - productCart.qty,
+        });
+      }
       set((state) => {
         const setUpdatedProductList = state.productList.map((productItems) => {
-          if (product.id === productItems.id) {
+          const findMatchId = product.find(
+            (productCart) => productCart.id === productItems.id
+          );
+          if (findMatchId) {
             return {
               ...productItems,
               stock: productItems.stock - product.qty,
@@ -109,7 +116,6 @@ const useProduct = create((set, get) => ({
           }
           return productItems;
         });
-
 
         localStorage.removeItem("cartStorage");
         localStorage.setItem(
@@ -127,13 +133,13 @@ const useProduct = create((set, get) => ({
     }
   },
   clearCart: (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    const confirmRemove = confirm('Are You Sure Want To CLear All Cart?')
-    if(!confirmRemove) return;
-    localStorage.removeItem('cartStorage')
-    set({productInCart: []})
-  }
+    e.preventDefault();
+    e.stopPropagation();
+    const confirmRemove = confirm("Are You Sure Want To CLear All Cart?");
+    if (!confirmRemove) return;
+    localStorage.removeItem("cartStorage");
+    set({ productInCart: [] });
+  },
 }));
 
 export default useProduct;
