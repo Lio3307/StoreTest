@@ -24,6 +24,10 @@ const useProduct = create((set, get) => ({
     const localData = JSON.parse(localStorage.getItem("productStorage"));
     return localData;
   },
+  addProduct: async (...newProduct) => {
+    console.log(newProduct)
+
+  },
 
   //inCart function
   setCartStorage: () => {
