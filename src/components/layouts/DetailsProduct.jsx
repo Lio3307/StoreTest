@@ -53,28 +53,27 @@ const DetailsProduct = () => {
           </div>
         </div>
       ) : (
-        <>
-        <Link
-        to={`/edit-product/${detailProduct.id}`}
-        >Edit</Link>
-        <section className="text-gray-600  body-font overflow-hidden">
+        <section className="text-gray-600 body-font overflow-hidden">
           <div className="px-5 mt-20 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
               <img
-                alt={detailProduct.name}
+                alt={detailProduct.title}
                 className="lg:w-1/3 w-full lg:h-100 h-64 object-contain object-center lg:mt-9 rounded"
                 src={detailProduct.image}
               />
-              <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 lg:ml-[4rem] mt-[2rem] ">
+              <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 lg:ml-[4rem] mt-[2rem]">
                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                   {detailProduct.title}
                 </h1>
-                <h3 className="text-gray-500 text-md tracking-widest title-font mt-[0.86rem]">
+                <h3 className="text-gray-500 text-md tracking-widest title-font mt-3">
                   Stock : {detailProduct.stock}
                 </h3>
-                <div className="flex mb-4"></div>
-                <p className="leading-relaxed">{detailProduct.description}</p>
-                <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6 mt-8">
+
+                <p className="leading-relaxed mt-4">
+                  {detailProduct.description}
+                </p>
+
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6 mt-8 w-full">
                   <button
                     disabled={detailProduct.stock === 0}
                     onClick={(e) => {
@@ -86,7 +85,7 @@ const DetailsProduct = () => {
                     className={`flex-1 text-center text-white ${
                       detailProduct.stock === 0
                         ? "bg-green-950 cursor-not-allowed"
-                        : "cursor-pointer bg-green-500 hover:bg-green-600"
+                        : "bg-green-500 hover:bg-green-600 cursor-pointer"
                     } border-0 py-2 px-6 rounded transition duration-300`}
                   >
                     {detailProduct.stock === 0 ? "Out Of Stock!" : "+ Cart"}
@@ -99,21 +98,29 @@ const DetailsProduct = () => {
                       try {
                         deleteProduct(detailProduct.id);
                       } catch (err) {
-                        console.error(err)
+                        console.error(err);
                       } finally {
-                        navigate("/")
+                        navigate("/");
                       }
-                    }} 
+                    }}
                     className="flex-1 text-white bg-red-600 hover:bg-red-700 font-medium rounded py-2 px-6 transition duration-300"
                   >
-                    Delete Product
+                    Delete
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      navigate(`/edit-product/${detailProduct.id}`)
+                    }
+                    className="flex-1 text-white bg-blue-500 hover:bg-blue-600 font-medium rounded py-2 px-6 transition duration-300"
+                  >
+                    Edit
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        </>
       )}
     </>
   );
