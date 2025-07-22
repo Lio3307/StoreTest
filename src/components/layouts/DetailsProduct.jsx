@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const DetailsProduct = () => {
   const { id } = useParams();
-  const { productList, getLocalStorage, addToCart, setCartStorage } =
+  const { productList, getLocalStorage, addToCart, setCartStorage, deleteProduct } =
     useProduct();
 
   const [detailProduct, setDetailProduct] = useState({});
@@ -51,7 +51,7 @@ const DetailsProduct = () => {
           <div className="px-5 mt-20 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
               <img
-                alt="ecommerce"
+                alt={detailProduct.name}
                 className="lg:w-1/3 w-full lg:h-100 h-64 object-contain object-center lg:mt-9 rounded"
                 src={detailProduct.image}
               />
@@ -84,6 +84,13 @@ const DetailsProduct = () => {
                   >
                     {detailProduct.stock === 0 ? "Out Of Stock!" : "+ Cart"}
                   </button>
+                  <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    e.preventDefault()
+                    deleteProduct(detailProduct.id)
+                  }}
+                  >Delete Product</button>
                 </div>
               </div>
             </div>

@@ -69,7 +69,7 @@ const ProductCard = () => {
                   >
                     <p className="block relative h-48 rounded overflow-hidden">
                       <img
-                        alt="ecommerce"
+                        alt={product.name}
                         className="object-contain rounded-2xl object-center w-full h-full block"
                         src={product.image}
                       />
