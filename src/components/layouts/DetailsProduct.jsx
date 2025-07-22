@@ -4,8 +4,13 @@ import { useState, useEffect } from "react";
 
 const DetailsProduct = () => {
   const { id } = useParams();
-  const { productList, getLocalStorage, addToCart, setCartStorage, deleteProduct } =
-    useProduct();
+  const {
+    productList,
+    getLocalStorage,
+    addToCart,
+    setCartStorage,
+    deleteProduct,
+  } = useProduct();
 
   const [detailProduct, setDetailProduct] = useState({});
   const [loading, setLoading] = useState(true);
@@ -64,10 +69,7 @@ const DetailsProduct = () => {
                 </h3>
                 <div className="flex mb-4"></div>
                 <p className="leading-relaxed">{detailProduct.description}</p>
-                <div className="grid my-[2rem] grid-cols-2">
-                  <span className="title-font font-medium text-2xl text-gray-900">
-                    ${detailProduct.price}
-                  </span>
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6 mt-8">
                   <button
                     disabled={detailProduct.stock === 0}
                     onClick={(e) => {
@@ -76,21 +78,25 @@ const DetailsProduct = () => {
                       addToCart(detailProduct);
                       setCartStorage();
                     }}
-                    className={`grid ml-[4rem] lg:ml-[5rem] text-center text-white ${
+                    className={`flex-1 text-center text-white ${
                       detailProduct.stock === 0
                         ? "bg-green-950 cursor-not-allowed"
-                        : "cursor-pointer bg-green-500 focus:outline-none hover:bg-green-600"
-                    } border-0 py-1 px-6 rounded`}
+                        : "cursor-pointer bg-green-500 hover:bg-green-600"
+                    } border-0 py-2 px-6 rounded transition duration-300`}
                   >
                     {detailProduct.stock === 0 ? "Out Of Stock!" : "+ Cart"}
                   </button>
+
                   <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    e.preventDefault()
-                    deleteProduct(detailProduct.id)
-                  }}
-                  >Delete Product</button>
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      deleteProduct(detailProduct.id);
+                    }}
+                    className="flex-1 text-white bg-red-600 hover:bg-red-700 font-medium rounded py-2 px-6 transition duration-300"
+                  >
+                    Delete Product
+                  </button>
                 </div>
               </div>
             </div>

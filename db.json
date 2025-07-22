@@ -179,16 +179,6 @@
       "category": "women's clothing",
       "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
       "stock": 100
-    },
-
-    {
-      "id": "b0ea",
-      "title": "man clothes",
-      "price": 3.49,
-      "description": "aaa",
-      "category": "clothes",
-      "image": "https://picsum.photos/387/192",
-      "stock": 100
     }
   ]
 }
