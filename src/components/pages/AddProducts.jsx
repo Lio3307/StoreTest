@@ -28,14 +28,24 @@ const AddProduct = () => {
       return;
     }
 
-    addProduct({
-      title: productName,
-      price: parseFloat(productPrice),
-      description: productDesc,
-      category: productCateg,
-      image: productImage,
-      stock: parseInt(productStock),
-    });
+    try {
+      addProduct({
+        title: productName,
+        price: parseFloat(productPrice),
+        description: productDesc,
+        category: productCateg,
+        image: productImage,
+        stock: parseInt(productStock),
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setProductName("");
+      setProductDesc("");
+      setProductCateg("");
+      setProductPrice(0);
+      setProductStock(0);
+    }
   };
   return (
     <>
