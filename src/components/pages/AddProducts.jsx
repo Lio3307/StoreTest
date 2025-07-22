@@ -11,7 +11,7 @@ const AddProduct = () => {
   const productImage = "https://picsum.photos/387/192";
 
   const { addProduct } = useProduct();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleAddProduct = (e) => {
     e.stopPropagation();
@@ -39,7 +39,7 @@ const AddProduct = () => {
         image: productImage,
         stock: parseInt(productStock),
       });
-      alert('Product Successfully Added!!')
+      alert("Product Successfully Added!!");
     } catch (err) {
       console.error(err);
     } finally {
@@ -48,7 +48,7 @@ const AddProduct = () => {
       setProductCateg("");
       setProductPrice(0);
       setProductStock(0);
-      navigate("/")
+      navigate("/");
     }
   };
 
@@ -60,8 +60,7 @@ const AddProduct = () => {
     setProductCateg("");
     setProductPrice(0);
     setProductStock(0);
-    navigate("/")
-
+    navigate("/");
   };
   return (
     <>
@@ -149,9 +148,10 @@ const AddProduct = () => {
             Add Product
           </button>
 
-          <button 
-          onClick={handleCancle}
-          className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-lg shadow-md transition">
+          <button
+            onClick={handleCancle}
+            className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-lg shadow-md transition"
+          >
             Cancel
           </button>
         </div>

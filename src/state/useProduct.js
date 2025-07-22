@@ -30,6 +30,17 @@ const useProduct = create((set, get) => ({
       console.error(error);
     });
   },
+  deleteProduct: async (id) => {
+    const confirmDelete = confirm('Are you sure want to delete this Product?')
+    if(!confirmDelete) return;
+    try {
+      await axios.delete(`${API_KEY}/${id}`)
+      alert('Delete has been successfully!')
+      
+    } catch (err) {
+      console.error(err)
+    }
+  },
 
   //inCart function
   setCartStorage: () => {
