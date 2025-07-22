@@ -19,9 +19,9 @@ const AddProduct = () => {
       !productName.trim() ||
       !productCateg.trim() ||
       !productDesc.trim() ||
-      productPrice === 0 ||
+      productPrice <= 0 ||
       !productPrice.trim() ||
-      productStock === 0 ||
+      productStock <= 0 ||
       !productStock.trim()
     ) {
       alert("Input Field Must Correct Or Cannot Be Empty!!");

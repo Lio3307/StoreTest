@@ -188,6 +188,15 @@
       "category": "clothes",
       "image": "https://picsum.photos/387/192",
       "stock": -1
+    },
+    {
+      "id": "b0ea",
+      "title": "man clothes",
+      "price": 3.49,
+      "description": "aaa",
+      "category": "clothes",
+      "image": "https://picsum.photos/387/192",
+      "stock": 100
     }
   ]
 }

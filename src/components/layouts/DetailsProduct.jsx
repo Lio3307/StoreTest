@@ -59,6 +59,9 @@ const DetailsProduct = () => {
                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                   {detailProduct.title}
                 </h1>
+                <h3 className="text-gray-500 text-md tracking-widest title-font mt-[0.86rem]">
+                  Stock : {detailProduct.stock}
+                </h3>
                 <div className="flex mb-4"></div>
                 <p className="leading-relaxed">{detailProduct.description}</p>
                 <div className="grid my-[2rem] grid-cols-2">
