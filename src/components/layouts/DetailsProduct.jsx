@@ -17,7 +17,7 @@ const DetailsProduct = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleFetchData = async () => {
+    const handleFetchData = () => {
       try {
         const currentProduct = getLocalStorage() || productList;
         const productMatchId = currentProduct.find(
@@ -53,6 +53,7 @@ const DetailsProduct = () => {
           </div>
         </div>
       ) : (
+        <>
         <section className="text-gray-600  body-font overflow-hidden">
           <div className="px-5 mt-20 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -109,6 +110,7 @@ const DetailsProduct = () => {
             </div>
           </div>
         </section>
+        </>
       )}
     </>
   );

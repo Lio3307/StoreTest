@@ -1,4 +1,20 @@
-const EditProduct = () => {
+import { useEffect, useState } from "react";
+import useProduct from "../../state/useProduct";
+
+const EditProduct = (id) => {
+
+    const [getProductById, setGetProductById] = useState({})
+
+    const {productList} = useProduct();
+
+    useEffect(() => {
+        const getProduct = productList.filter(product => product.id === id)
+
+        setGetProductById(...getProduct)
+        console.log(getProductById)
+        
+    }, [])
+
     return (
         <>
         <label>Product Name</label>

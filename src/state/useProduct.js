@@ -26,7 +26,7 @@ const useProduct = create((set, get) => ({
     return localData;
   },
   addProduct: (newProduct) => {
-    axios.post("http://localhost:3000/products", newProduct).catch((error) => {
+    axios.post(API_KEY, newProduct).catch((error) => {
       console.error(error);
     });
   },
