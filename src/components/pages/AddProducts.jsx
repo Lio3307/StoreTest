@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useProduct from "../../state/useProduct";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
@@ -10,6 +11,7 @@ const AddProduct = () => {
   const productImage = "https://picsum.photos/387/192";
 
   const { addProduct } = useProduct();
+  const navigate = useNavigate()
 
   const handleAddProduct = (e) => {
     e.stopPropagation();
@@ -37,6 +39,7 @@ const AddProduct = () => {
         image: productImage,
         stock: parseInt(productStock),
       });
+      alert('Product Successfully Added!!')
     } catch (err) {
       console.error(err);
     } finally {
@@ -45,7 +48,20 @@ const AddProduct = () => {
       setProductCateg("");
       setProductPrice(0);
       setProductStock(0);
+      navigate("/")
     }
+  };
+
+  const handleCancle = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setProductName("");
+    setProductDesc("");
+    setProductCateg("");
+    setProductPrice(0);
+    setProductStock(0);
+    navigate("/")
+
   };
   return (
     <>
@@ -133,7 +149,9 @@ const AddProduct = () => {
             Add Product
           </button>
 
-          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-lg shadow-md transition">
+          <button 
+          onClick={handleCancle}
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-lg shadow-md transition">
             Cancel
           </button>
         </div>

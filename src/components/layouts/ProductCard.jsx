@@ -50,6 +50,14 @@ const ProductCard = () => {
               Cart
             </Link>
           </div>
+          <div className="w-full px-5 my-8 max-w-screen-xl mx-auto flex justify-end">
+            <Link
+              to="/add-product"
+              className="text-white rounded-[0.6rem] px-[2rem] py-2 bg-green-500 hover:bg-green-600 transition"
+            >
+              Add product
+            </Link>
+          </div>
           <section className="text-gray-600 body-font">
             <div className=" w-full px-5 my-24 max-w-screen-xl mx-auto ">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
