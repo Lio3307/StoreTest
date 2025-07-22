@@ -15,7 +15,7 @@ const DetailsProduct = () => {
       try {
         const currentProduct = getLocalStorage() || productList;
         const productMatchId = currentProduct.find(
-          (product) => Number(product.id) === Number(id)
+          (product) => product.id === id
         );
         setDetailProduct(productMatchId);
       } catch (err) {

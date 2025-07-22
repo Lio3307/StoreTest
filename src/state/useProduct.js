@@ -11,6 +11,7 @@ const useProduct = create((set, get) => ({
     try {
       const response = await axios.get(API_KEY);
       set({ productList: response.data });
+      console.log(response.data);
       get().setLocalStorage();
     } catch (err) {
       console.error(err);
@@ -104,7 +105,7 @@ const useProduct = create((set, get) => ({
       const confirmCheckOut = confirm("Are You Sure Want To Check Out?");
       if (!confirmCheckOut) return;
       for (const productCart of product) {
-        await axios.patch(`${API_KEY}/${Number(productCart.id)}`, {
+        await axios.patch(`${API_KEY}/${productCart.id}`, {
           stock: productCart.stock - productCart.qty,
         });
       }
@@ -116,12 +117,13 @@ const useProduct = create((set, get) => ({
           if (findMatchId) {
             return {
               ...productItems,
-              stock: productItems.stock - product.qty,
+              stock: productItems.stock - findMatchId.qty,
             };
           }
           return productItems;
         });
 
+        console.log(setUpdatedProductList);
         localStorage.removeItem("cartStorage");
         localStorage.setItem(
           "productStorage",
