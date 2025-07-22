@@ -24,9 +24,10 @@ const useProduct = create((set, get) => ({
     const localData = JSON.parse(localStorage.getItem("productStorage"));
     return localData;
   },
-  addProduct: async (...newProduct) => {
-    console.log(newProduct)
-
+  addProduct: (newProduct) => {
+    axios.post("http://localhost:3000/products", newProduct).catch((error) => {
+      console.error(error);
+    });
   },
 
   //inCart function

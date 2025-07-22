@@ -20,22 +20,22 @@ const AddProduct = () => {
       !productCateg.trim() ||
       !productDesc.trim() ||
       productPrice === 0 ||
-      isNaN(productPrice) ||
+      !productPrice.trim() ||
       productStock === 0 ||
-      isNaN(productStock)
+      !productStock.trim()
     ) {
       alert("Input Field Must Correct Or Cannot Be Empty!!");
       return;
     }
 
-    addProduct(
-      productName,
-      productDesc,
-      productCateg,
-      productPrice,
-      productStock,
-      productImage
-    );
+    addProduct({
+      title: productName,
+      price: productPrice,
+      description: productDesc,
+      category: productCateg,
+      image: productImage,
+      stock: productStock,
+    });
   };
   return (
     <>
