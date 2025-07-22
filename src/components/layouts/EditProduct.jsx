@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import useProduct from "../../state/useProduct";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const EditProduct = () => {
   const { id } = useParams();
   const { getLocalStorage, productList, editProduct } = useProduct();
+  const navigate = useNavigate()
 
   const [newProductName, setNewProductName] = useState("");
   const [newProductDesc, setNewProductDesc] = useState("");
@@ -19,11 +20,11 @@ const EditProduct = () => {
     if (
       !newProductName.trim() ||
       !newProductDesc.trim() ||
-      !newProductCateg.trim() ||
-      newProductPrice <= 0 ||
-      !newProductPrice.trim() ||
-      newProductStock <= 0 ||
-      !newProductStock.trim()
+      !newProductCateg.trim() || 
+      newProductPrice === '' ||
+      newProductPrice < 0 ||
+      newProductStock === '' || 
+      newProductStock < 0
     ) {
         alert("The Input Field Must Be Correct And Cannot Be Empty!!")
         return;
@@ -40,16 +41,19 @@ const EditProduct = () => {
         }
 
         editProduct(id, newProductValue)
+
     } catch (err) {
       console.error(err);
+    } finally {
+        navigate("/")
     }
   };
+
 
   useEffect(() => {
     try {
       const getProduct = getLocalStorage() || productList;
       const setEditData = getProduct.find((product) => product.id === id);
-      console.log(setEditData);
       setNewProductName(setEditData.title);
       setNewProductDesc(setEditData.description);
       setNewProductCateg(setEditData.category);
@@ -127,10 +131,19 @@ const EditProduct = () => {
         Save Product
       </button>
       <button
-        onClick={handleEditNewProduct}
-        className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+        onClick={(e) => {
+            e.stopPropagation()
+            e.preventDefault()
+            setNewProductName('')
+            setNewProductCateg('')
+            setNewProductDesc('')
+            setNewProductPrice(0)
+            setNewProductStock(0)
+            navigate("/")
+        }}
+        className="w-full bg-slate-400 text-slate-800 py-2 rounded-lg hover:bg-slate-500 transition duration-200"
       >
-        Save Product
+        Cancle
       </button>
     </div>
   );
