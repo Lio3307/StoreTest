@@ -41,6 +41,14 @@ const useProduct = create((set, get) => ({
       console.error(err)
     }
   },
+  editProduct: async (id, newData) => {
+    try {
+      await axios.patch(`${API_KEY}/${id}`, newData)
+      alert("product successfully updated!!")
+    } catch (err) {
+      console.error(err)
+    }
+  },
 
   //inCart function
   setCartStorage: () => {

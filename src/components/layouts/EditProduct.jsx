@@ -4,13 +4,46 @@ import { useParams } from "react-router-dom";
 
 const EditProduct = () => {
   const { id } = useParams();
-  const { getLocalStorage, productList } = useProduct();
+  const { getLocalStorage, productList, editProduct } = useProduct();
 
   const [newProductName, setNewProductName] = useState("");
   const [newProductDesc, setNewProductDesc] = useState("");
   const [newProductCateg, setNewProductCateg] = useState("");
   const [newProductPrice, setNewProductPrice] = useState(0);
   const [newProductStock, setNewProductStock] = useState(0);
+
+  const handleEditNewProduct = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const confirmChanges = confirm("Are you sure want to change the data??");
+    if (
+      !newProductName.trim() ||
+      !newProductDesc.trim() ||
+      !newProductCateg.trim() ||
+      newProductPrice <= 0 ||
+      !newProductPrice.trim() ||
+      newProductStock <= 0 ||
+      !newProductStock.trim()
+    ) {
+        alert("The Input Field Must Be Correct And Cannot Be Empty!!")
+        return;
+    }
+      if (!confirmChanges) return;
+
+    try {
+        const newProductValue = {
+            title: newProductName,
+            description: newProductDesc,
+            category: newProductCateg,
+            price: parseFloat(newProductPrice),
+            stock: parseInt(newProductStock)
+        }
+
+        editProduct(id, newProductValue)
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     try {
@@ -88,7 +121,13 @@ const EditProduct = () => {
       </div>
 
       <button
-        type="submit"
+        onClick={handleEditNewProduct}
+        className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+      >
+        Save Product
+      </button>
+      <button
+        onClick={handleEditNewProduct}
         className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
       >
         Save Product
