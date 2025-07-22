@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useProduct from "../../state/useProduct";
 import { useState, useEffect } from "react";
 
 const DetailsProduct = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const {
     productList,
     getLocalStorage,
@@ -91,8 +92,14 @@ const DetailsProduct = () => {
                     onClick={(e) => {
                       e.stopPropagation();
                       e.preventDefault();
-                      deleteProduct(detailProduct.id);
-                    }}
+                      try {
+                        deleteProduct(detailProduct.id);
+                      } catch (err) {
+                        console.error(err)
+                      } finally {
+                        navigate("/")
+                      }
+                    }} 
                     className="flex-1 text-white bg-red-600 hover:bg-red-700 font-medium rounded py-2 px-6 transition duration-300"
                   >
                     Delete Product
