@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import useProduct from "../../state/useProduct";
 import { useState, useEffect } from "react";
 
@@ -54,6 +54,9 @@ const DetailsProduct = () => {
         </div>
       ) : (
         <>
+        <Link
+        to={`/edit-product/${detailProduct.id}`}
+        >Edit</Link>
         <section className="text-gray-600  body-font overflow-hidden">
           <div className="px-5 mt-20 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
