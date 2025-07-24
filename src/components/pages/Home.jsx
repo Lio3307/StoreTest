@@ -24,7 +24,7 @@ const Home = () => {
     keys: ["title"],
     threshold: 0.3,
   };
-  const fuse = new Fuse(productList || [], options);
+  const fuse = new Fuse(productList, options);
   const result = searchQuery
     ? fuse.search(searchQuery).map((res) => res.item)
     : productList;
