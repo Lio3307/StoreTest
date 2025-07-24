@@ -104,7 +104,7 @@ const AddProduct = () => {
               value={productDesc}
               onChange={(e) => setProductDesc(e.target.value)}
               required
-              className=" w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className=" w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-sky-600"
             />
           </div>
 
